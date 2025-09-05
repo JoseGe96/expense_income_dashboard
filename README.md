@@ -53,3 +53,22 @@ It provides an easy way to log expenses and income, edit records, and analyze tr
    ```bash
    git clone https://github.com/JoseGe96/coffee-dashboard.git
    cd coffee-dashboard
+   pip install flask pandas
+   python app.py
+
+coffee-dashboard/
+│── app.py
+│── data/
+│   ├── expenses.csv
+│   └── income.csv
+│── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── income.html
+│   ├── income_dashboard.html
+│   ├── edit.html
+│   └── income_edit.html
+│── static/
+│   ├── style.css
+│   └── scripts.js
