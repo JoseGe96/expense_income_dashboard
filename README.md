@@ -5,7 +5,7 @@ It provides an easy way to log expenses and income, edit records, and analyze tr
 
 ---
 
-## ✨ Features
+## Features
 
 ### Expenses
 - Log expenses with:
