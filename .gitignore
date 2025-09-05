@@ -1,0 +1,5 @@
+coffee_expenses_flask/data/*.csv
+*.env
+__pycache__/
+*.pyc
+.DS_Store

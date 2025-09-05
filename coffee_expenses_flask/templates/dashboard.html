@@ -1,0 +1,308 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<form class="filters" method="get" action="{{ url_for('dashboard') }}">
+  <label>
+    <span>From</span>
+    <input type="date" name="start" value="{{ start_val }}">
+  </label>
+  <label>
+    <span>To</span>
+    <input type="date" name="end" value="{{ end_val }}">
+  </label>
+
+  
+  <button class="btn" type="submit">Apply</button>
+  <a class="link-reset" href="{{ url_for('dashboard') }}">Reset</a>
+
+  <div class="divider"></div>
+  <label class="inline">
+    <input type="checkbox" id="recBiz" checked>
+    <span>Business</span>
+  </label>
+  <label class="inline">
+    <input type="checkbox" id="recPer" checked>
+    <span>Personal</span>
+  </label>
+  
+</form>
+
+
+<section class="grid three">
+  <div class="kpi card">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">${{ "{:,.2f}".format(charts['total_spend']) }}</div>
+  </div>
+  <div class="kpi card">
+    <div class="kpi-label">Business</div>
+    <div class="kpi-value">${{ "{:,.2f}".format(charts['business_spend']) }}</div>
+  </div>
+  <div class="kpi card">
+    <div class="kpi-label">Personal</div>
+    <div class="kpi-value">${{ "{:,.2f}".format(charts['personal_spend']) }}</div>
+  </div>
+</section>
+
+<section class="grid two">
+  <div class="card">
+    <h2>By Category</h2>
+    <div class="chart-wrap"><canvas id="byCategory"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>By Recurrence</h2>
+
+  <div class="chart-wrap"><canvas id="byRecurrence"></canvas></div>
+</div>
+
+
+ <div class="card">
+    <h2>By Type (Top 12)</h2>
+    <div class="chart-wrap"><canvas id="byType"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>By Card</h2>
+    <div class="chart-wrap"><canvas id="byCard"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>Monthly Trend</h2>
+    <div class="chart-wrap"><canvas id="monthly"></canvas></div>
+  </div>
+</section>
+<script>
+  // Money formatter
+  const money = v => '$' + Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 2 });
+
+  // Tooltip config that works for bar/line/pie
+  const moneyTooltip = {
+    callbacks: {
+      label: function (ctx) {
+        // Try parsed number → parsed.y → raw
+        const v = (typeof ctx.parsed === 'number')
+          ? ctx.parsed
+          : (ctx.parsed && typeof ctx.parsed.y === 'number')
+            ? ctx.parsed.y
+            : (typeof ctx.raw === 'number' ? ctx.raw : 0);
+        return money(v);
+      }
+    }
+  };
+
+  // Common options for charts with a Y axis (bar/line)
+  const commonOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { tooltip: moneyTooltip },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: (value) => '$' + Number(value).toLocaleString()
+        }
+      }
+    }
+  };
+
+  // For pie charts (no Y axis)
+  const pieOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { tooltip: moneyTooltip }
+  };
+</script>
+
+<script>
+  // helpers
+  function sumArrays(a, b) {
+    const n = Math.max(a.length, b.length);
+    const out = new Array(n);
+    for (let i = 0; i < n; i++) out[i] = (a[i] || 0) + (b[i] || 0);
+    return out;
+  }
+  const moneyLabel = (v) => '$' + Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 2 });
+
+  // checkbox refs
+  const recBizEl = document.getElementById('recBiz');
+  const recPerEl = document.getElementById('recPer');
+
+  // --- CATEGORY (pie: Business/Personal slices) ---
+  const catLabels   = {{ charts['cat_labels']|tojson }};
+  const catBusiness = {{ charts['cat_business']|tojson }};
+  const catPersonal = {{ charts['cat_personal']|tojson }};
+
+  function catData() {
+    const b = recBizEl.checked, p = recPerEl.checked;
+    if (b && p) return sumArrays(catBusiness, catPersonal);
+    if (b) return catBusiness.slice();
+    if (p) return catPersonal.slice();
+    return catLabels.map(() => 0);
+  }
+
+  const byCategory = new Chart(document.getElementById('byCategory'), {
+    type: 'pie',
+    data: { labels: catLabels, datasets: [{ data: catData() }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { tooltip: { callbacks: { label: (ctx)=> moneyLabel(typeof ctx.parsed==='number'?ctx.parsed:ctx.raw) } } }
+    }
+  });
+
+  // --- TYPE (bar) ---
+  const typeLabels   = {{ charts['type_labels']|tojson }};
+  const typeBusiness = {{ charts['type_business']|tojson }};
+  const typePersonal = {{ charts['type_personal']|tojson }};
+
+  function typeData() {
+    const b = recBizEl.checked, p = recPerEl.checked;
+    if (b && p) return sumArrays(typeBusiness, typePersonal);
+    if (b) return typeBusiness.slice();
+    if (p) return typePersonal.slice();
+    return typeLabels.map(() => 0);
+  }
+
+  const byType = new Chart(document.getElementById('byType'), {
+    type: 'bar',
+    data: { labels: typeLabels, datasets: [{ data: typeData() }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { tooltip: { callbacks: {
+        label: (ctx)=> moneyLabel((ctx.parsed && typeof ctx.parsed.y==='number') ? ctx.parsed.y : ctx.raw)
+      } } },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + Number(v).toLocaleString() } } }
+    }
+  });
+
+  // --- CARD (bar) ---
+  const cardLabels   = {{ charts['card_labels']|tojson }};
+  const cardBusiness = {{ charts['card_business']|tojson }};
+  const cardPersonal = {{ charts['card_personal']|tojson }};
+
+  function cardData() {
+    const b = recBizEl.checked, p = recPerEl.checked;
+    if (b && p) return sumArrays(cardBusiness, cardPersonal);
+    if (b) return cardBusiness.slice();
+    if (p) return cardPersonal.slice();
+    return cardLabels.map(() => 0);
+  }
+
+  const byCard = new Chart(document.getElementById('byCard'), {
+    type: 'bar',
+    data: { labels: cardLabels, datasets: [{ data: cardData() }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { tooltip: { callbacks: {
+        label: (ctx)=> moneyLabel((ctx.parsed && typeof ctx.parsed.y==='number') ? ctx.parsed.y : ctx.raw)
+      } } },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + Number(v).toLocaleString() } } }
+    }
+  });
+
+  // --- MONTHLY (line) ---
+  const monthLabels   = {{ charts['monthly_labels']|tojson }};
+  const monthBusiness = {{ charts['monthly_business']|tojson }};
+  const monthPersonal = {{ charts['monthly_personal']|tojson }};
+
+  function monthData() {
+    const b = recBizEl.checked, p = recPerEl.checked;
+    if (b && p) return sumArrays(monthBusiness, monthPersonal);
+    if (b) return monthBusiness.slice();
+    if (p) return monthPersonal.slice();
+    return monthLabels.map(() => 0);
+  }
+
+  const monthly = new Chart(document.getElementById('monthly'), {
+    type: 'line',
+    data: { labels: monthLabels, datasets: [{ data: monthData(), fill: false, tension: 0.25 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { tooltip: { callbacks: {
+        label: (ctx)=> moneyLabel((ctx.parsed && typeof ctx.parsed.y==='number') ? ctx.parsed.y : 0)
+      } } },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + Number(v).toLocaleString() } } }
+    }
+  });
+
+  // --- wire up the same two checkboxes to refresh all charts ---
+  function refreshAll() {
+    byCategory.data.datasets[0].data = catData(); byCategory.update('none');
+    byType.data.datasets[0].data     = typeData(); byType.update('none');
+    byCard.data.datasets[0].data     = cardData(); byCard.update('none');
+    monthly.data.datasets[0].data    = monthData(); monthly.update('none');
+  }
+  recBizEl.addEventListener('change', refreshAll);
+  recPerEl.addEventListener('change', refreshAll);
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const canvas = document.getElementById('byRecurrence');
+  const bizEl  = document.getElementById('recBiz');
+  const perEl  = document.getElementById('recPer');
+  if (!canvas || !bizEl || !perEl) return; // safety
+
+  // Use whichever keys you populated in app.py
+  const recLabels   = {{ (charts.get('recurrence_labels') or charts.get('by_recurrence_labels') or []) | tojson }};
+  const recBusiness = {{ (charts.get('recurrence_business') or []) | tojson }};
+  const recPersonal = {{ (charts.get('recurrence_personal') or []) | tojson }};
+
+  function sumArrays(a, b) {
+    const n = Math.max(a.length, b.length);
+    const out = new Array(n);
+    for (let i = 0; i < n; i++) out[i] = (a[i] || 0) + (b[i] || 0);
+    return out;
+  }
+
+  function currentData() {
+    const useBiz = bizEl.checked;
+    const usePer = perEl.checked;
+    if (useBiz && usePer) return sumArrays(recBusiness, recPersonal);
+    if (useBiz) return recBusiness.slice();
+    if (usePer) return recPersonal.slice();
+    return recLabels.map(() => 0);
+  }
+
+  // Destroy any old instance if hot-reloaded
+  if (window.__byRecurrence) {
+    window.__byRecurrence.destroy();
+  }
+
+  window.__byRecurrence = new Chart(canvas, {
+    type: 'pie',
+    data: {
+      labels: recLabels,
+      datasets: [{ data: currentData() }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (ctx) {
+              // pie: numeric is ctx.parsed or ctx.raw
+              const v = (typeof ctx.parsed === 'number')
+                ? ctx.parsed
+                : (typeof ctx.raw === 'number' ? ctx.raw : 0);
+              return '$' + Number(v).toLocaleString(undefined, { minimumFractionDigits: 2 });
+            }
+          }
+        }
+      }
+    }
+
+  });
+
+  function refresh() {
+    window.__byRecurrence.data.datasets[0].data = currentData();
+    window.__byRecurrence.update('none'); // no animation = snappy
+  }
+
+  bizEl.addEventListener('change', refresh);
+  perEl.addEventListener('change', refresh);
+});
+</script>
+
+
+{% endblock %}

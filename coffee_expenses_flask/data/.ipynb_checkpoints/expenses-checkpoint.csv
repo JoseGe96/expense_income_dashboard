@@ -1,0 +1,114 @@
+date,amount,expense_type,category,recurrence,card,description
+2025-08-01,174.0,Insumos,Business,Variable,HEY Negocios D,Panecito JOSEGE
+2025-08-01,247.5,Restaurante,Personal,Variable,HEY Negocios D,Tacos Chapala
+2025-08-01,39.2,Subscripciones,Personal,Fijo,Banorte C,Apple Storage
+2025-08-01,129.65,Subscripciones,Personal,Fijo,Banorte C,Apple TV
+2025-08-01,227.6,Mascota,Personal,Variable,Banorte C,Bolsas Zullie
+2025-08-04,649.0,Internet,Business,Fijo,HEY Negocios D,TELMEX
+2025-08-04,27.22,Otros,Personal,Variable,HEY Negocios D,Limones
+2025-08-04,274.0,Otros,Personal,Variable,HEY Negocios D,Asturiano cervezas y botana
+2025-08-04,108.0,Restaurante,Personal,Variable,HEY Negocios D,Gorditas Tacos el Pata
+2025-08-04,67.0,Insumos,Business,Variable,HEY Negocios D,Hielos
+2025-08-04,303.0,Insumos,Business,Variable,HEY Negocios D,Panecito JOSEGE
+2025-08-04,514.0,Gasolina,Business,Variable,HEY Negocios D,Gasolina
+2025-08-04,3000.0,TDC,Personal,Variable,HEY Negocios D,Hey Credito
+2025-08-04,58.0,Subscripciones,Personal,Fijo,HEY Personal C,Hey Fan
+2025-08-05,1050.0,Otros,Personal,Variable,HEY Negocios D,Prestamo mi amorcito
+2025-08-05,35.0,Salidas,Personal,Variable,HEY Negocios D,Cinemex
+2025-08-05,49.0,AT&T,Personal,Variable,HEY Negocios D,Datos Extra
+2025-08-06,600.0,Servicios,Business,Fijo,HEY Negocios D,Agua Agosto
+2025-08-06,94.45,Subscripciones,Business,Fijo,HEY Negocios D,Loyverse
+2025-08-06,25.51,Otros,Personal,Variable,HEY Negocios D,Farmacia Guadalajara
+2025-08-07,60.0,Otros,Personal,Variable,HEY Negocios D,Panecito
+2025-08-07,69.0,Otros,Personal,Variable,HEY Negocios D,SuperQ
+2025-08-07,114.6,Insumos,Business,Variable,HEY Negocios D,Garrafones
+2025-08-07,519.8,Gasolina,Business,Variable,HEY Negocios D,Gasolina
+2025-08-07,311.0,Insumos,Business,Variable,HEY Negocios D,Leche Deslactosada
+2025-08-07,175.2,Otros,Personal,Variable,HEY Negocios D,Hummus Chiqui
+2025-08-08,90.0,Insumos,Business,Variable,HEY Negocios D,Chapatas JOSEGE
+2025-08-08,67.0,Insumos,Business,Variable,HEY Personal C,Hielos
+2025-08-08,60.0,Insumos,Business,Variable,HEY Negocios C,Agua Tonica
+2025-08-11,230.0,Insumos,Business,Variable,HEY Negocios D,Panecito JOSEGE
+2025-08-11,45.0,Insumos,Business,Variable,HEY Negocios D,Guantes
+2025-08-11,750.0,Insumos,Business,Variable,HEY Negocios D,2kg Cafe
+2025-08-11,270.0,Restaurante,Personal,Variable,HEY Negocios D,Domino's
+2025-08-11,138.5,Otros,Personal,Variable,HEY Negocios D,Oxxo
+2025-08-12,117.5,Otros,Personal,Variable,HEY Negocios D,Oxxo
+2025-08-12,49.0,AT&T,Personal,Variable,HEY Negocios D,Datos Extra
+2025-08-12,216.77,Insumos,Business,Variable,HEY Negocios D,Etrusca Menta
+2025-08-12,665.0,Insumos,Business,Variable,HEY Negocios D,Cafe Apapacho
+2025-08-13,325.48,Impuestos,Business,Variable,HEY Negocios D,Impuestos Julio
+2025-08-13,90.0,Insumos,Business,Variable,HEY Negocios D,Agua Tonica
+2025-08-13,212.0,Insumos,Business,Variable,HEY Negocios D,Garrafones y Flores
+2025-08-13,70.0,Otros,Personal,Variable,HEY Negocios D,SuperQ
+2025-08-13,296.0,Insumos,Business,Variable,HEY Negocios D,Panecito JOSEGE
+2025-08-13,156.0,Otros,Personal,Variable,HEY Negocios D,Oxxo
+2025-08-14,100.0,Restaurante,Personal,Variable,HEY Negocios D,Tim Hortons
+2025-08-14,519.8,Gasolina,Business,Variable,HEY Negocios D,Gasolina
+2025-08-14,30.0,Otros,Personal,Variable,HEY Negocios D,SuperQ
+2025-08-15,753.48,Insumos,Business,Variable,HEY Negocios D,2kg Cafe
+2025-08-15,1023.05,Super,Personal,Variable,HEY Negocios D,HEB
+2025-08-15,35.95,Insumos,Business,Variable,HEY Negocios D,Espinaca
+2025-08-15,26.0,Otros,Personal,Variable,HEY Negocios D,SuperQ
+2025-08-15,67.0,Insumos,Business,Variable,HEY Negocios D,Hielos
+2025-08-18,49.0,AT&T,Personal,Variable,HEY Negocios D,Datos Extra
+2025-08-18,440.2,Insumos,Business,Variable,HEY Negocios D,Leche Deslactosada y Queso
+2025-08-18,190.0,Restaurante,Personal,Variable,HEY Negocios D,Costco Chicken Bakes
+2025-08-18,144.8,Insumos,Business,Variable,HEY Negocios D,Leche Entera
+2025-08-18,276.0,Insumos,Business,Variable,HEY Negocios D,Panecito
+2025-08-18,75.0,Otros,Personal,Variable,HEY Negocios D,Oxxo
+2025-08-18,1503.48,Salarios,Business,Variable,HEY Negocios D,Salario Diegue Primera Parte
+2025-08-18,183.48,Insumos,Business,Variable,HEY Negocios D,Chapatas JOSEGE
+2025-08-19,70.48,Insumos,Business,Variable,HEY Negocios D,Hielos
+2025-08-20,1853.48,Otros,Personal,Variable,HEY Negocios D,Préstamo Chiqui
+2025-08-21,647.9,Restaurante,Personal,Variable,HEY Negocios D,Johnny Rocket's
+2025-08-25,519.0,Gasolina,Business,Variable,HEY Negocios D,Gasolina
+2025-08-25,519.0,Gasolina,Business,Variable,HEY Negocios D,Gasolina
+2025-08-25,539.0,Restaurante,Personal,Variable,HEY Negocios D,Mixe
+2025-08-25,1503.48,Salarios,Business,Variable,HEY Negocios D,Salario Diegue Segunda Parte
+2025-08-26,35.0,Salidas,Personal,Variable,HEY Negocios D,Cinemex
+2025-08-26,228.0,Otros,Personal,Variable,HEY Negocios D,Oxxo
+2025-08-27,311.2,Insumos,Business,Variable,HEY Negocios D,Leche Deslactosada
+2025-08-27,344.0,Super,Personal,Variable,HEY Negocios D,Costco
+2025-08-27,959.0,Otros,Personal,Variable,HEY Negocios D,Croquetas Zullie
+2025-08-27,20.0,Otros,Personal,Variable,HEY Negocios D,Vendas Box
+2025-08-27,217.0,Insumos,Business,Variable,HEY Negocios D,Garrafones y Flores
+2025-08-27,357.0,Otros,Personal,Variable,HEY Negocios D,Flores Chiqui
+2025-08-27,17.0,Otros,Personal,Variable,HEY Negocios D,Oxxo
+2025-08-18,2993.0,Otros,Personal,Variable,HEY Personal C,Vuelo Pto. Vallarta - Queretaro
+2025-08-20,1491.76,Subscripciones,Personal,Fijo,HEY Personal C,Seguros MTY
+2025-08-22,2260.0,Otros,Personal,Variable,HEY Personal C,"Pension, baño y desparasitada Zullie"
+2025-08-25,610.5,Restaurante,Personal,Variable,HEY Personal C,Mixe
+2025-08-25,1170.0,Otros,Personal,Fijo,HEY Personal C,Fitpass
+2025-08-25,373.76,Subscripciones,Personal,Fijo,HEY Personal C,ChatGPT
+2025-08-26,935.94,AT&T,Personal,Fijo,HEY Personal C,AT&T
+2025-08-26,619.3,Restaurante,Personal,Variable,HEY Personal C,Toks
+2025-08-27,232.0,Subscripciones,Personal,Variable,HEY Personal C,Buro de Credito
+2025-08-11,519.8,Gasolina,Business,Variable,HEY Personal C,Gasolina
+2025-08-08,127.0,Insumos,Business,Variable,HEY Personal C,Hielos y Otros
+2025-08-04,58.0,Subscripciones,Personal,Fijo,HEY Personal C,Hey Fan
+2025-07-28,935.94,AT&T,Personal,Fijo,HEY Personal C,AT&T
+2025-07-25,374.29,Subscripciones,Personal,Fijo,HEY Personal C,ChatGPT
+2025-07-22,182.0,Restaurante,Personal,Variable,HEY Personal C,Fausto
+2025-07-24,115.5,Otros,Personal,Variable,HEY Personal C,Oxxo
+2025-07-23,244.5,Restaurante,Personal,Variable,HEY Personal C,Pizza Costco
+2025-07-23,55.0,Otros,Personal,Variable,HEY Personal C,Hogaza Panecito
+2025-07-22,422.0,Salidas,Personal,Variable,HEY Personal C,Cine
+2025-07-22,525.8,Gasolina,Business,Variable,HEY Personal C,Gasolina
+2025-07-22,48.0,Restaurante,Personal,Variable,HEY Personal C,McDonald's
+2025-07-22,38.0,Otros,Personal,Variable,HEY Personal C,Oxxo
+2025-07-21,514.0,Gasolina,Business,Variable,HEY Personal C,Gasolina
+2025-07-21,97.0,Restaurante,Personal,Variable,HEY Personal C,Starbucks
+2025-07-21,131.5,Otros,Personal,Variable,HEY Negocios C,Oxxo
+2025-07-21,174.0,Restaurante,Personal,Variable,HEY Personal C,Tim Hortons
+2025-07-18,1491.76,Subscripciones,Personal,Fijo,HEY Personal C,Seguros MTY
+2025-07-17,514.0,Gasolina,Business,Variable,HEY Personal C,Gasolina
+2025-07-17,5179.0,Camioneta,Personal,Variable,HEY Personal C,Balatas y discos
+2025-07-16,65.0,Otros,Personal,Variable,HEY Personal C,Oxxo
+2025-07-16,580.8,Restaurante,Personal,Variable,HEY Personal C,Tacos el Pata
+2025-07-15,214.0,Restaurante,Personal,Variable,HEY Personal C,Cafele
+2025-07-14,49.0,Subscripciones,Personal,Fijo,HEY Personal C,Apple Storage
+2025-07-14,129.0,Subscripciones,Personal,Fijo,HEY Personal C,Apple TV
+2025-07-14,39.0,Subscripciones,Personal,Fijo,HEY Personal C,Google Storage
+2025-07-14,162.0,Otros,Personal,Variable,HEY Personal C,Oxxo
+2025-07-14,91.0,Restaurante,Personal,Variable,HEY Personal C,Tim Hortons

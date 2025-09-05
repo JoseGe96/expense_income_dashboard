@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Income Dashboard</h1>
+
+<form class="filters" method="get" action="{{ url_for('income_dashboard') }}">
+  <label>
+    <span>From</span>
+    <input type="date" name="start" value="{{ start_val }}">
+  </label>
+  <label>
+    <span>To</span>
+    <input type="date" name="end" value="{{ end_val }}">
+  </label>
+  <button class="btn" type="submit">Apply</button>
+  <a class="link-reset" href="{{ url_for('income_dashboard') }}">Reset</a>
+</form>
+
+<section class="grid three">
+  <div class="kpi card">
+    <div class="kpi-label">Total Net Income</div>
+    <div class="kpi-value">${{ "{:,.2f}".format(charts['total_net']) }}</div>
+  </div>
+</section>
+
+<section class="grid two">
+  <div class="card">
+    <h2>Net by Channel</h2>
+    <div class="chart-wrap"><canvas id="incomeByChannelNet"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>Monthly Net Trend</h2>
+    <div class="chart-wrap"><canvas id="incomeMonthly"></canvas></div>
+  </div>
+</section>
+
+<script>
+  function money(v){ return '$' + Number(v||0).toLocaleString(undefined,{minimumFractionDigits:2}); }
+  const tooltipMoney = { callbacks: { label: (ctx) => {
+    const v = (ctx.parsed && typeof ctx.parsed.y==='number') ? ctx.parsed.y
+            : (typeof ctx.raw === 'number' ? ctx.raw : 0);
+    return money(v);
+  } } };
+
+  const chLbl = {{ charts['by_channel_labels']|tojson }};
+  const chNet = {{ charts['by_channel_net']|tojson }};
+
+  // NET by channel (pie or bar — choose one)
+  new Chart(document.getElementById('incomeByChannelNet'), {
+    type: 'pie',  // or 'bar'
+    data: { labels: chLbl, datasets: [{ data: chNet }] },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ tooltip: { callbacks: { label:(ctx)=> money(typeof ctx.parsed==='number'?ctx.parsed:ctx.raw) } } }
+    }
+  });
+
+  // Monthly NET (line)
+  new Chart(document.getElementById('incomeMonthly'), {
+    type: 'line',
+    data: {
+      labels: {{ charts['monthly_labels']|tojson }},
+      datasets: [{ data: {{ charts['monthly_net']|tojson }}, fill:false, tension:0.25 }]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ tooltip: tooltipMoney },
+      scales:{ y:{ beginAtZero:true, ticks:{ callback:(v)=>'$'+Number(v).toLocaleString() } } }
+    }
+  });
+</script>
+
+{% endblock %}
