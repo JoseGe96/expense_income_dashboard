@@ -1,6 +1,6 @@
-# ☕ Coffee Business Dashboard
+# Coffee Business Dashboard
 
-A **Flask + Pandas web app** to manage my coffee business finances.  
+A **Flask + Pandas web app** to manage my family's coffee business finances.  
 It provides an easy way to log expenses and income, edit records, and analyze trends with interactive Chart.js dashboards.
 
 ---
@@ -51,5 +51,5 @@ It provides an easy way to log expenses and income, edit records, and analyze tr
 ## 🚀 Usage
 1. Clone the repo  
    ```bash
-   git clone https://github.com/yourusername/coffee-dashboard.git
+   git clone https://github.com/JoseGe96/coffee-dashboard.git
    cd coffee-dashboard
